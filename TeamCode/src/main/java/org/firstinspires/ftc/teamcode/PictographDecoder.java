@@ -104,7 +104,7 @@ public class PictographDecoder extends LinearOpMode {
          * Once you've obtained a license key, copy the string from the Vuforia web site
          * and paste it in to your code onthe next line, between the double quotes.
          */
-        parameters.vuforiaLicenseKey = "ATsODcD/////AAAAAVw2lR...d45oGpdljdOh5LuFB9nDNfckoxb8COxKSFX";
+        parameters.vuforiaLicenseKey = "AWS0i0z/////AAAAGXe9hLOSgU5Qjz1Yfs6sg9sSLs+sLOVRD29wlPLsJDACbiwdyfkHhcXxpVChB8eceNxXvwV9iw1op0b2UdxUxEb6BADHbAOpInRax1W48uZrVk/y5e3HiAdk/yo4MbGxRA9NxetYn2c4Ew5oStkcoqJOUxfXSrYL0jLksSvGWsmyFeibWO3Xwn8QgJOPooRoEPtHRL3oFwJAIIVPlLMi76WHrZC/kbtLghBAfqI7Lm0wa2lpbEuNYWi14gCkU7ZwVjN58goT2LAqQ6Bc5PLA0bptrMa04apt9lR8mebdVQ9goH6rfCUlc9bMI1jpsSChtpjXCpE3WoNPV5QcJfxJa667eKolto1sZk9G+R0frXa8";
 
         /*
          * We also indicate which camera on the RC that we wish to use.

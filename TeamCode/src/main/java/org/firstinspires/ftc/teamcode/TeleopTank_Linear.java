@@ -54,11 +54,10 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwareK9bot;
  */
 
 @TeleOp(name="K9bot: Telop Tank", group="K9bot")
-@Disabled
 public class TeleopTank_Linear extends LinearOpMode {
 
     /* Declare OpMode members. */
-    HardwareK9bot   robot           = new HardwareK9bot();              // Use a K9'shardware
+    HardwareBot   robot           = new HardwareBot();              // Use a K9'shardware
     @Override
     public void runOpMode() {
         double left;
@@ -70,10 +69,10 @@ public class TeleopTank_Linear extends LinearOpMode {
         robot.init(hardwareMap);
 
         // Send telemetry message to signify robot waiting;
-        telemetry.addData("Say", "Hello Driver");    //
+        telemetry.addData("Say", "Wassup my peeps");    //
         telemetry.update();
         sleep(500);
-        telemetry.addData("Say", "From Code Team (Riley and Noah) We edited the code! (Ya)");
+        telemetry.addData("Say", "From Code Team (Riley and Noah and James) We edited the code! (Ya)");
         telemetry.update();
 
         // Wait for the game to start (driver presses PLAY)
@@ -83,8 +82,8 @@ public class TeleopTank_Linear extends LinearOpMode {
         while (opModeIsActive()) {
 
             // Run wheels in tank mode (note: The joystick goes negative when pushed forwards, so negate it)
-            left = -gamepad1.left_stick_y;
-            right = -gamepad1.right_stick_y;
+            left = gamepad1.left_stick_y;
+            right = gamepad1.right_stick_y;
             robot.leftDrive.setPower(left);
             robot.rightDrive.setPower(right);
 

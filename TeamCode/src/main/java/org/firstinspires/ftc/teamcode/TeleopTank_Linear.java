@@ -86,6 +86,7 @@ public class TeleopTank_Linear extends LinearOpMode {
             right = gamepad1.right_stick_y;
             robot.leftDrive.setPower(left);
             robot.rightDrive.setPower(right);
+//            robot.armServo.setPosition(.5);
 
             // Send telemetry message to signify robot running;
             telemetry.addData("left",  "%.2f", left);

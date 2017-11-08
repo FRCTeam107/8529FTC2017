@@ -31,6 +31,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -57,6 +58,9 @@ public class HardwareBot
     /* Public OpMode members. */
     public DcMotor  leftDrive   = null;
     public DcMotor  rightDrive  = null;
+    public DcMotor verticalFork = null;
+//    public Servo armServo = null;
+    public NormalizedColorSensor colorSensor;
 
     /* Local OpMode members. */
     HardwareMap hwMap  = null;
@@ -71,10 +75,20 @@ public class HardwareBot
         // save reference to HW Map
         hwMap = ahwMap;
 
+
+        colorSensor = hwMap.get(NormalizedColorSensor.class, "sensor_color");
+
         // Define and Initialize Motors
         leftDrive  = hwMap.get(DcMotor.class, "left_drive");
         rightDrive = hwMap.get(DcMotor.class, "right_drive");
         leftDrive.setDirection(DcMotor.Direction.REVERSE);
+
+
+        // Fork Lift Motor
+//        verticalFork = hwMap.get(DcMotor.class, "vertical_fork");
+
+        // Servo's
+//        armServo = hwMap.get(Servo.class, "arm_servo");
 
         // Set all motors to zero power
         leftDrive.setPower(0);

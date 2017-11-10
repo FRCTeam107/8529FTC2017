@@ -59,7 +59,7 @@ public class HardwareBot
     public DcMotor  leftDrive   = null;
     public DcMotor  rightDrive  = null;
     public DcMotor verticalFork = null;
-//    public Servo armServo = null;
+    public Servo armServo;
     public NormalizedColorSensor colorSensor;
 
     /* Local OpMode members. */
@@ -84,11 +84,11 @@ public class HardwareBot
         leftDrive.setDirection(DcMotor.Direction.REVERSE);
 
 
-        // Fork Lift Motor
+//         Fork Lift Motor
 //        verticalFork = hwMap.get(DcMotor.class, "vertical_fork");
 
-        // Servo's
-//        armServo = hwMap.get(Servo.class, "arm_servo");
+//         Servo's
+        armServo = hwMap.get(Servo.class, "arm_servo");
 
         // Set all motors to zero power
         leftDrive.setPower(0);

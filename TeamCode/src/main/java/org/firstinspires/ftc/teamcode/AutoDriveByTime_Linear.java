@@ -110,119 +110,7 @@ public class AutoDriveByTime_Linear extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        // Step through each leg of the path, ensuring that the Auto mode has not been stopped along the way
 
-        // Step 1:  Drive forward for .3 seconds
-        robot.leftDrive.setPower(TURN_SPEED);
-        robot.rightDrive.setPower(TURN_SPEED);
-        runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < .3)) {
-            telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
-            telemetry.update();
-        }
-
-
-        // Step 2:  Drive left for .5 seconds
-        robot.leftDrive.setPower(-FORWARD_SPEED);
-        robot.rightDrive.setPower(FORWARD_SPEED);
-        runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < .5)) {
-            telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
-            telemetry.update();
-        }
-
-        // Step 2:  Drive Forward for 1.5 Second
-        robot.leftDrive.setPower(FORWARD_SPEED);
-        robot.rightDrive.setPower(FORWARD_SPEED);
-        runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 1.5)) {
-            telemetry.addData("Path", "Leg 3: %2.5f S Elapsed", runtime.seconds());
-            telemetry.update();
-        }
-
-        // Step 3:  Stop
-        robot.leftDrive.setPower(0);
-        robot.rightDrive.setPower(0);
-
-//        telemetry.addData("Path", "Complete");
-//        telemetry.addData("hello", "fellow noobs");
-//        telemetry.update();
-//        sleep(500);
-//        telemetry.addData("Path","Hello");
-//        telemetry.update();
-//        sleep(1000);
-
-        // values is a reference to the hsvValues array.
-        float[] hsvValues = new float[3];
-        final float values[] = hsvValues;
-
-        // bPrevState and bCurrState keep track of the previous and current state of the button
-//        boolean bPrevState = false;
-//        boolean bCurrState = false;
-
-        // Get a reference to our sensor object.
-        colorSensor = hardwareMap.get(NormalizedColorSensor.class, "sensor_color");
-
-        // If possible, turn the light on in the beginning (it might already be on anyway,
-        // we just make sure it is if we can).
-        if (colorSensor instanceof SwitchableLight) {
-            ((SwitchableLight) colorSensor).enableLight(true);
-        }
-
-            // Read the sensor
-            NormalizedRGBA colors = colorSensor.getNormalizedColors();
-
-            /** Use telemetry to display feedback on the driver station. We show the conversion
-             * of the colors to hue, saturation and value, and display the the normalized values
-             * as returned from the sensor.
-             * @see <a href="http://infohost.nmt.edu/tcc/help/pubs/colortheory/web/hsv.html">HSV</a>*/
-
-            Color.colorToHSV(colors.toColor(), hsvValues);
-//            telemetry.addLine()
-//                    .addData("H", "%.3f", hsvValues[0])
-//                    .addData("S", "%.3f", hsvValues[1])
-//                    .addData("V", "%.3f", hsvValues[2]);
-//            telemetry.addLine()
-//                    .addData("a", "%.3f", colors.alpha)
-//                    .addData("r", "%.3f", colors.red)
-//                    .addData("g", "%.3f", colors.green)
-//                    .addData("b", "%.3f", colors.blue);
-
-            /** We also display a conversion of the colors to an equivalent Android color integer.
-             * @see Color */
-            int color = colors.toColor();
-//            telemetry.addLine("raw Android color: ")
-//                    .addData("a", "%02x", Color.alpha(color))
-//                    .addData("r", "%02x", Color.red(color))
-//                    .addData("g", "%02x", Color.green(color))
-//                    .addData("b", "%02x", Color.blue(color));
-
-
-            float max = Math.max(Math.max(Math.max(colors.red, colors.green), colors.blue), colors.alpha);
-            colors.red /= max;
-            colors.green /= max;
-            colors.blue /= max;
-            color = colors.toColor();
-
-//            telemetry.addLine("normalized color:  ")
-//                    .addData("a", "%02x", Color.alpha(color))
-//                    .addData("r", "%02x", Color.red(color))
-//                    .addData("g", "%02x", Color.green(color))
-//                    .addData("b", "%02x", Color.blue(color));
-            telemetry.addLine().addData("I am here","");
-            if (Color.blue(color) > 100) {
-                telemetry.addLine("Color Blue!!!").addData("a", Color.blue(color));
-            }
-            telemetry.update();
-
-            // convert the RGB values to HSV values.
-            Color.RGBToHSV(Color.red(color), Color.green(color), Color.blue(color), hsvValues);
-
-
-    /*
-     * To start up Vuforia, tell it the view that we wish to use for camera monitor (on the RC phone);
-     * If no camera monitor is desired, use the parameterless constructor instead (commented out below).
-     */
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
 
@@ -296,7 +184,85 @@ public class AutoDriveByTime_Linear extends LinearOpMode {
 
             telemetry.update();
         }
+
+        // values is a reference to the hsvValues array.
+        float[] hsvValues = new float[3];
+        final float values[] = hsvValues;
+
+
+        // Get a reference to our sensor object.
+        colorSensor = hardwareMap.get(NormalizedColorSensor.class, "sensor_color");
+
+        // If possible, turn the light on in the beginning (it might already be on anyway,
+        // we just make sure it is if we can).
+        if (colorSensor instanceof SwitchableLight) {
+            ((SwitchableLight) colorSensor).enableLight(true);
+        }
+
+        // Read the sensor
+        NormalizedRGBA colors = colorSensor.getNormalizedColors();
+
+
+        Color.colorToHSV(colors.toColor(), hsvValues);
+
+        /** We also display a conversion of the colors to an equivalent Android color integer.
+         * @see Color */
+        int color = colors.toColor();
+
+
+        float max = Math.max(Math.max(Math.max(colors.red, colors.green), colors.blue), colors.alpha);
+        colors.red /= max;
+        colors.green /= max;
+        colors.blue /= max;
+        color = colors.toColor();
+
+
+        telemetry.addLine().addData("I am here", "");
+        if (Color.blue(color) > 100) {
+            telemetry.addLine("Color Blue!!!").addData("a", Color.blue(color));
+        }
+        telemetry.update();
+
+        // convert the RGB values to HSV values.
+        Color.RGBToHSV(Color.red(color), Color.green(color), Color.blue(color), hsvValues);
+
+        // Step through each leg of the path, ensuring that the Auto mode has not been stopped along the way
+
+        // Step 1:  Drive forward for .3 seconds
+        robot.leftDrive.setPower(TURN_SPEED);
+        robot.rightDrive.setPower(TURN_SPEED);
+        runtime.reset();
+        while (opModeIsActive() && (runtime.seconds() < .3)) {
+            telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
+            telemetry.update();
+        }
+
+
+        // Step 2:  Drive left for .5 seconds
+        robot.leftDrive.setPower(-FORWARD_SPEED);
+        robot.rightDrive.setPower(FORWARD_SPEED);
+        runtime.reset();
+        while (opModeIsActive() && (runtime.seconds() < .5)) {
+            telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
+            telemetry.update();
+        }
+
+        // Step 2:  Drive Forward for 1.5 Second
+        robot.leftDrive.setPower(FORWARD_SPEED);
+        robot.rightDrive.setPower(FORWARD_SPEED);
+        runtime.reset();
+        while (opModeIsActive() && (runtime.seconds() < 1.5)) {
+            telemetry.addData("Path", "Leg 3: %2.5f S Elapsed", runtime.seconds());
+            telemetry.update();
+        }
+
+        // Step 3:  Stop
+        robot.leftDrive.setPower(0);
+        robot.rightDrive.setPower(0);
+
+
     }
+
 
     String format(OpenGLMatrix transformationMatrix) {
         return (transformationMatrix != null) ? transformationMatrix.formatAsTransform() : "null";

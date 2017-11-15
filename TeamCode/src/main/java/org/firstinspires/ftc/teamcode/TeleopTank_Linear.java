@@ -84,8 +84,8 @@ public class TeleopTank_Linear extends LinearOpMode {
             // Run wheels in tank mode (note: The joystick goes negative when pushed forwards, so negate it)
             left = gamepad1.left_stick_y;
             right = gamepad1.right_stick_y;
-            robot.leftDrive.setPower(left);
-            robot.rightDrive.setPower(right);
+//            robot.leftDrive.setPower(left);
+//            robot.rightDrive.setPower(right);
             robot.armServo.setPosition(.5);
 
             // Send telemetry message to signify robot running;
@@ -93,17 +93,6 @@ public class TeleopTank_Linear extends LinearOpMode {
             telemetry.addData("right", "%.2f", right);
             telemetry.update();
 
-
-            // Servo button test thing = Button X on controller.
-            if (gamepad1.x ){
-                robot.armServo.setPosition(0);
-            }
-            if (gamepad1.b){
-                robot.armServo.setPosition(1);
-            }
-            if (gamepad1.y){
-                robot.armServo.setPosition(.5);
-            }
 
             // Pause for 40 mS each cycle = update 25 times a second.
             sleep(40);

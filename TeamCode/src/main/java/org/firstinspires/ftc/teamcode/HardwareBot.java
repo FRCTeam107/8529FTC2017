@@ -56,9 +56,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class HardwareBot
 {
 //    /* Public OpMode members. */
-//    public DcMotor  leftDrive   = null;
-//    public DcMotor  rightDrive  = null;
-//    public DcMotor verticalFork = null;
+    public DcMotor  leftDrive   = null;
+    public DcMotor  rightDrive  = null;
+    public DcMotor verticalFork = null;
     public Servo armServo;
     public NormalizedColorSensor colorSensor;
 
@@ -78,25 +78,25 @@ public class HardwareBot
 
         colorSensor = hwMap.get(NormalizedColorSensor.class, "sensor_color");
 
-//        // Define and Initialize Motors
-//        leftDrive  = hwMap.get(DcMotor.class, "left_drive");
-//        rightDrive = hwMap.get(DcMotor.class, "right_drive");
-//        leftDrive.setDirection(DcMotor.Direction.REVERSE);
+        // Define and Initialize Motors
+        leftDrive  = hwMap.get(DcMotor.class, "left_drive");
+        rightDrive = hwMap.get(DcMotor.class, "right_drive");
+        leftDrive.setDirection(DcMotor.Direction.REVERSE);
 
 
 //         Fork Lift Motor
-//        verticalFork = hwMap.get(DcMotor.class, "vertical_fork");
+        verticalFork = hwMap.get(DcMotor.class, "vertical_fork");
 
 //         Servo's
         armServo = hwMap.get(Servo.class, "arm_servo");
 
 //        // Set all motors to zero power
-//        leftDrive.setPower(0);
-//        rightDrive.setPower(0);
+        leftDrive.setPower(0);
+        rightDrive.setPower(0);
 
-//        // Set all motors to run without encoders.
-//        // May want to use RUN_USING_ENCODERS if encoders are installed.
-//        leftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-//        rightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        // Set all motors to run without encoders.
+        // May want to use RUN_USING_ENCODERS if encoders are installed.
+        leftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 }

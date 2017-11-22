@@ -139,55 +139,57 @@ public class AutonBlue_1 extends LinearOpMode {
                 color = colors.toColor();
 
                 if (Color.blue(color) > 100) {
-                    robot.leftDrive.setPower(TURN_SPEED);
-                    robot.rightDrive.setPower(TURN_SPEED);
+                    robot.leftDrive.setPower(-FORWARD_SPEED);
+                    robot.rightDrive.setPower(-FORWARD_SPEED);
                     runtime.reset();
                     while (opModeIsActive() && (runtime.seconds() < .3)) {
                         telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
                         telemetry.update();
+
                     }
                 } else {
-                    robot.leftDrive.setPower(-TURN_SPEED);
-                    robot.rightDrive.setPower(-TURN_SPEED);
+                    robot.leftDrive.setPower(FORWARD_SPEED);
+                    robot.rightDrive.setPower(FORWARD_SPEED);
                     runtime.reset();
                     while (opModeIsActive() && (runtime.seconds() < .3)) {
                         telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
                         telemetry.update();
+
+                        }
+                    }
+                    telemetry.update();
+
+                    if (!rampUp)
+                        // Keep stepping down until we hit the min value.
+                        position -= INCREMENT;
+                    if (position <= MIN_POS) {
+                        position = MIN_POS;
+                        rampUp = !rampUp;  // Switch ramp direction
                     }
                 }
+
+                // Display the current value
+                telemetry.addData("Servo Position", "%5.2f", position);
+                telemetry.addData(">", "Press Stop to end test.");
                 telemetry.update();
 
-                if (!rampUp)
-                    // Keep stepping down until we hit the min value.
-                    position -= INCREMENT;
-                if (position <= MIN_POS) {
-                    position = MIN_POS;
-                    rampUp = !rampUp;  // Switch ramp direction
-                }
+                // Set the servo to the new position and pause;
+                robot.armServo.setPosition(position);
+                sleep(CYCLE_MS);
+                idle();
+
             }
 
-            // Display the current value
-            telemetry.addData("Servo Position", "%5.2f", position);
-            telemetry.addData(">", "Press Stop to end test.");
-            telemetry.update();
 
-            // Set the servo to the new position and pause;
-            robot.armServo.setPosition(position);
-            sleep(CYCLE_MS);
-            idle();
-
-        }
-
-
-        robot.leftDrive.setPower(-FORWARD_SPEED);
-        robot.rightDrive.setPower(FORWARD_SPEED);
-        runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < .5)) {
-            telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
-            telemetry.update();
-        }
+            robot.leftDrive.setPower(FORWARD_SPEED);
+            robot.rightDrive.setPower(FORWARD_SPEED);
+            runtime.reset();
+            while (opModeIsActive() && (runtime.seconds() < 1)) {
+                telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
+                telemetry.update();
+            }
 //    String format(OpenGLMatrix transformationMatrix) {
 //        return (transformationMatrix != null) ? transformationMatrix.formatAsTransform() : "null";
 //    }
+        }
     }
-}

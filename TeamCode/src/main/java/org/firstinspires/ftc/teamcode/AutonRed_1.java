@@ -62,7 +62,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name = "Blue_2", group = "Pushbot")
+@Autonomous(name = "Red_1", group = "Pushbot")
 public class AutonRed_1 extends LinearOpMode {
 
     /* Declare OpMode members. */
@@ -139,20 +139,22 @@ public class AutonRed_1 extends LinearOpMode {
                 color = colors.toColor();
 
                 if (Color.blue(color) > 100) {
-                    robot.leftDrive.setPower(TURN_SPEED);
-                    robot.rightDrive.setPower(TURN_SPEED);
+                    robot.leftDrive.setPower(FORWARD_SPEED);
+                    robot.rightDrive.setPower(FORWARD_SPEED);
                     runtime.reset();
                     while (opModeIsActive() && (runtime.seconds() < .3)) {
                         telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
                         telemetry.update();
+
                     }
                 } else {
-                    robot.leftDrive.setPower(-TURN_SPEED);
-                    robot.rightDrive.setPower(-TURN_SPEED);
+                    robot.leftDrive.setPower(-FORWARD_SPEED);
+                    robot.rightDrive.setPower(-FORWARD_SPEED);
                     runtime.reset();
                     while (opModeIsActive() && (runtime.seconds() < .3)) {
                         telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
                         telemetry.update();
+
                     }
                 }
                 telemetry.update();
@@ -179,10 +181,10 @@ public class AutonRed_1 extends LinearOpMode {
         }
 
 
-        robot.leftDrive.setPower(-FORWARD_SPEED);
+        robot.leftDrive.setPower(FORWARD_SPEED);
         robot.rightDrive.setPower(FORWARD_SPEED);
         runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < .5)) {
+        while (opModeIsActive() && (runtime.seconds() < 1)) {
             telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
             telemetry.update();
         }

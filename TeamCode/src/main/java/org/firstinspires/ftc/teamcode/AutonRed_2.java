@@ -30,6 +30,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import android.graphics.Color;
+import android.util.TimeFormatException;
 import android.view.View;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -139,16 +140,16 @@ public class AutonRed_2 extends LinearOpMode {
                 color = colors.toColor();
 
                 if (Color.blue(color) > 100) {
-                    robot.leftDrive.setPower(TURN_SPEED);
-                    robot.rightDrive.setPower(TURN_SPEED);
+                    robot.leftDrive.setPower(-FORWARD_SPEED);
+                    robot.rightDrive.setPower(-FORWARD_SPEED);
                     runtime.reset();
                     while (opModeIsActive() && (runtime.seconds() < .3)) {
                         telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
                         telemetry.update();
                     }
                 } else {
-                    robot.leftDrive.setPower(-TURN_SPEED);
-                    robot.rightDrive.setPower(-TURN_SPEED);
+                    robot.leftDrive.setPower(FORWARD_SPEED);
+                    robot.rightDrive.setPower(FORWARD_SPEED);
                     runtime.reset();
                     while (opModeIsActive() && (runtime.seconds() < .3)) {
                         telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
@@ -179,10 +180,25 @@ public class AutonRed_2 extends LinearOpMode {
         }
 
 
-        robot.leftDrive.setPower(-FORWARD_SPEED);
+        robot.leftDrive.setPower(FORWARD_SPEED);
         robot.rightDrive.setPower(FORWARD_SPEED);
         runtime.reset();
+        while (opModeIsActive() && (runtime.seconds() < 2)) {
+            telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
+            telemetry.update();
+        }
+        robot.leftDrive.setPower(FORWARD_SPEED);
+        robot.rightDrive.setPower(-FORWARD_SPEED);
+        runtime.reset();
         while (opModeIsActive() && (runtime.seconds() < .5)) {
+            telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
+            telemetry.update();
+
+        }
+        robot.leftDrive.setPower(FORWARD_SPEED);
+        robot.rightDrive.setPower(FORWARD_SPEED);
+        runtime.reset();
+        while (opModeIsActive() && (runtime.seconds() < 3)) {
             telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
             telemetry.update();
         }

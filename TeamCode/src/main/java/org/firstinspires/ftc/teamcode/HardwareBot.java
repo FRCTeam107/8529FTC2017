@@ -58,10 +58,10 @@ public class HardwareBot
 //    /* Public OpMode members. */
     public DcMotor  leftDrive   = null;
     public DcMotor  rightDrive  = null;
-//    public DcMotor verticalFork = null;
+    public DcMotor verticalFork = null;
     public Servo armServo;
     public NormalizedColorSensor colorSensor;
-//    public DcMotor intake = null;
+    public DcMotor intake = null;
     /* Local OpMode members. */
     HardwareMap hwMap  = null;
     private ElapsedTime period  = new ElapsedTime();
@@ -82,10 +82,10 @@ public class HardwareBot
         leftDrive  = hwMap.get(DcMotor.class, "left_drive");
         rightDrive = hwMap.get(DcMotor.class, "right_drive");
         leftDrive.setDirection(DcMotor.Direction.REVERSE);
-//        intake = hwMap.get(DcMotor.class, "intake");
+        intake = hwMap.get(DcMotor.class, "intake");
 
 //         Fork Lift Motor
-//        verticalFork = hwMap.get(DcMotor.class, "vertical_fork");
+        verticalFork = hwMap.get(DcMotor.class, "vertical_fork");
 
 //         Servo's
         armServo = hwMap.get(Servo.class, "arm_servo");
@@ -93,8 +93,8 @@ public class HardwareBot
 //        // Set all motors to zero power
         leftDrive.setPower(0);
         rightDrive.setPower(0);
-//        intake.setPower(0);
-//        verticalFork.setPower(0);
+        intake.setPower(0);
+        verticalFork.setPower(0);
 
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODERS if encoders are installed.

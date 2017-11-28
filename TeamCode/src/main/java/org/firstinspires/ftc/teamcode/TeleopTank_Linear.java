@@ -62,7 +62,7 @@ public class TeleopTank_Linear extends LinearOpMode {
     public void runOpMode() {
         double left;
         double right;
-        double fork;
+//        double fork;
 
         /* Initialize the hardware variables.
          * The init() method of the hardware class does all the work here
@@ -85,15 +85,15 @@ public class TeleopTank_Linear extends LinearOpMode {
             // Run wheels in tank mode (note: The joystick goes negative when pushed forwards, so negate it)
             left = gamepad1.left_stick_y;
             right = gamepad1.right_stick_y;
-            fork = gamepad2.right_stick_y;
+//            fork = gamepad2.right_stick_y;
             robot.leftDrive.setPower(left);
             robot.rightDrive.setPower(right);
-            robot.verticalFork.setPower(fork);
+//            robot.verticalFork.setPower(fork);
             if (gamepad2.a){
-                robot.intake.setPower(1);
+//                robot.intake.setPower(1);
             }
             if (gamepad2.y){
-                robot.intake.setPower(-1);
+//                robot.intake.setPower(-1);
             }
 
 

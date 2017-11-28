@@ -72,8 +72,7 @@ public class AutonRed_1 extends LinearOpMode {
     static final double FORWARD_SPEED = .5;
     static final double TURN_SPEED = 0.75;
     static final double armServo = 0;
-    NormalizedColorSensor colorSensor;
-    View relativeLayout;
+
 
     VuforiaLocalizer vuforia;
     static final double INCREMENT = 0.01;     // amount to slew servo each CYCLE_MS cycle
@@ -100,8 +99,8 @@ public class AutonRed_1 extends LinearOpMode {
         while (opModeIsActive()) {
             // If possible, turn the light on in the beginning (it might already be on anyway,
             // we just make sure it is if we can).
-            if (colorSensor instanceof SwitchableLight) {
-                ((SwitchableLight) colorSensor).enableLight(true);
+            if (robot.colorSensor instanceof SwitchableLight) {
+                ((SwitchableLight) robot.colorSensor).enableLight(true);
             }
 
             if (rampUp) {
@@ -113,11 +112,11 @@ public class AutonRed_1 extends LinearOpMode {
                 }
 
 //set color sensor up in hardwareMap
-                colorSensor = hardwareMap.get(NormalizedColorSensor.class, "sensor_color");
+//                colorSensor = hardwareMap.get(NormalizedColorSensor.class, "sensor_color");
 
 
                 // Read the sensor
-                NormalizedRGBA colors = colorSensor.getNormalizedColors();
+                NormalizedRGBA colors = robot.colorSensor.getNormalizedColors();
 
 
                 // values is a reference to the hsvValues array.
